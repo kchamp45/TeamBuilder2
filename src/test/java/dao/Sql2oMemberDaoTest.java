@@ -65,6 +65,14 @@ public class Sql2oMemberDaoTest {
         Member updatedMember = memberDao.findById(member.getId());
         assertNotEquals(initialName, updatedMember.getName());
     }
+    @Test
+    public void deleteByIdDeletesCorrectMember() throws Exception {
+        Member member = setupNewMember();
+        memberDao.add(member);
+        memberDao.deleteById(member.getId());
+        assertEquals(0, memberDao.getAll().size());
+    }
+
     public Member setupNewMember() { return new Member("Perry");}
     public Member setupNewMember2() { return new Member("Tim");}
 }
