@@ -1,12 +1,15 @@
 SET MODE PostgreSQL;
 
-CREATE TABLE IF NOT EXISTS restaurants (
+CREATE TABLE IF NOT EXISTS members (
   id int PRIMARY KEY auto_increment,
   name VARCHAR,
-  cuisineId int
+  age int
+
   );
 
-  CREATE TABLE IF NOT EXISTS cuisines (
-  id int PRIMARY KEY auto_increment,
-  type VARCHAR
-  );
+--  CREATE TABLE IF NOT EXISTS teams (
+--  id int PRIMARY KEY auto_increment,
+--  name VARCHAR,
+--  description VARCHAR
+--
+--  );
