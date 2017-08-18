@@ -25,6 +25,6 @@ public interface TeamDao {
     //delete individual team
     void deleteTeamById(int id);
 //
-//    //delete all teams
-//    void clearAllTeams();
+    //delete all teams
+    void clearAllTeams();
 }
