@@ -9,9 +9,9 @@ public interface MemberDao {
     //create
     void add (Member member);
 
-//    //read
-//    List<Member> getAll();
-//
+    //read
+    List<Member> getAll();
+
     //find member
     Member findById(int id);
 

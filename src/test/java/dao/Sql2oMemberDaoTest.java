@@ -26,6 +26,7 @@ public class Sql2oMemberDaoTest {
     }
     @After
     public void tearDown() throws Exception {
+        conn.close();
     }
 
     @Test
@@ -43,6 +44,17 @@ public class Sql2oMemberDaoTest {
         Member foundMember = memberDao.findById(member.getId());
         assertEquals(member, foundMember);
     }
+    @Test
+    public void returnAlladdedMembersFromgetAll() throws Exception {
+        Member member = setupNewMember();
+        memberDao.add(member);
+        assertEquals(1, memberDao.getAll().size());
+    }
+    @Test
+    public void noMembersReturnsEmptyList() throws Exception {
+        assertEquals(0, memberDao.getAll().size());
+    }
+
 
     public Member setupNewMember() { return new Member("Perry");}
     public Member setupNewMember2() { return new Member("Tim");}

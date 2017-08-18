@@ -5,7 +5,9 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
 
-    public class Sql2oMemberDao implements MemberDao {
+import java.util.List;
+
+public class Sql2oMemberDao implements MemberDao {
         private final Sql2o sql2o;
 
         public Sql2oMemberDao(Sql2o sql2o){
@@ -34,4 +36,11 @@ import org.sql2o.Sql2oException;
             }
         }
 
+        @Override
+        public List<Member> getAll() {
+            try(Connection con = sql2o.open()){
+                return con.createQuery("SELECT * FROM members")
+                        .executeAndFetch(Member.class);
+            }
+        }
 }
