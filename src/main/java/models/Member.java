@@ -6,7 +6,7 @@ public class Member {
     private int id;
     private int teamId;
 
-    public Member(String name, int age) {
+    public Member(String name) {
         this.name = name;
         this.age = age;
         this.teamId = teamId;
