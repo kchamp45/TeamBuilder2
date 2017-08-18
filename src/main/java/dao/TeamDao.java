@@ -14,9 +14,9 @@ public interface TeamDao {
 //    //read -------------
 //    List<Team> getAll();
 //
-//    //find individual team
-//    Team findById(int id);
-//    //
+    //find individual team
+    Team findById(int id);
+    //
 ////
 //    //update individual team
 //    void update(int id, String name, String description);
