@@ -22,7 +22,7 @@ public interface MemberDao {
     //delete individual member
     void deleteById(int id);
 //
-//    //delete all members
-//    void clearAllMembers();
+    //delete all members
+    void clearAllMembers();
 
 }
