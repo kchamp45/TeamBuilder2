@@ -50,6 +50,17 @@ public class Sql2oTeamDaoTest {
         Team foundTeam = teamDao.findById(team.getId());
         assertEquals(team, foundTeam);
     }
+    @Test
+    public void addedTeamsAreReturnedFromGetAll() throws Exception {
+        Team team = setupNewTeam();
+        teamDao.add(team);
+        assertEquals(1, teamDao.getAll().size());
+    }
+
+    @Test
+    public void noCuisinesReturnsEmptyList() throws Exception {
+        assertEquals(0, teamDao.getAll().size());
+    }
 
     public Team setupNewTeam() { return new Team("Red", "We love to code");}
     public Team setupNewTeam2() { return new Team("Blue", "We love to hack");}

@@ -5,6 +5,8 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
 
+import java.util.List;
+
 public class Sql2oTeamDao implements TeamDao{
     private final Sql2o sql2o;
 
@@ -37,5 +39,13 @@ public class Sql2oTeamDao implements TeamDao{
                     .executeAndFetchFirst(Team.class);
         }
 
+    }
+
+    @Override
+    public List<Team> getAll() {
+        try(Connection con = sql2o.open()){
+            return con.createQuery("SELECT * FROM teams")
+                    .executeAndFetch(Team.class);
+        }
     }
 }
