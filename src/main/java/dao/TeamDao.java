@@ -9,7 +9,8 @@ public interface TeamDao {
 
     //create -------------
     void add (Team team);
-//    List<Member> getAllMembersByTeam(int teamId);
+
+    List<Member> getAllMembersByTeam(int teamId);
 //
 //    //read -------------
     List<Team> getAll();

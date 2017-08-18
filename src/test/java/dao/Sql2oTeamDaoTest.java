@@ -1,5 +1,6 @@
 package dao;
 
+import models.Member;
 import models.Team;
 import org.junit.After;
 import org.junit.Before;
@@ -91,6 +92,24 @@ public class Sql2oTeamDaoTest {
         int daoSize = teamDao.getAll().size();
         teamDao.clearAllTeams();
         assertTrue(daoSize > 0 && daoSize > teamDao.getAll().size());
+    }
+    @Test
+    public void getAllMembersByTeamReturnsMembersCorrectly() throws Exception {
+        Team team = setupNewTeam();
+        teamDao.add(team);
+        int teamId = team.getId();
+
+        Member newMember = new Member("Perry", teamId);
+        Member newMember2 = new Member("Tim", teamId);
+        Member newMember3 = new Member("Bob", teamId);
+
+        memberDao.add(newMember);
+        memberDao.add(newMember2);
+
+        assertTrue(teamDao.getAllMembersByTeam(teamId).size() == 2);
+        assertTrue(teamDao.getAllMembersByTeam(teamId).contains(newMember));
+        assertTrue(teamDao.getAllMembersByTeam(teamId).contains(newMember2));
+        assertFalse(teamDao.getAllMembersByTeam(teamId).contains(newMember3)); //bc no third member added
     }
     public Team setupNewTeam() { return new Team("Red", "We love to code");}
     public Team setupNewTeam2() { return new Team("Blue", "We love to hack");}

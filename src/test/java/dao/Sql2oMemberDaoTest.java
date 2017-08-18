@@ -58,7 +58,7 @@ public class Sql2oMemberDaoTest {
     @Test
     public void updateChangesMemberContent() throws Exception {
         String initialName = "Perry";
-        Member member = new Member(initialName);
+        Member member = new Member(initialName, 1);
         memberDao.add(member);
 
         memberDao.update(member.getId(), "Peril", 1);
@@ -89,6 +89,7 @@ public class Sql2oMemberDaoTest {
         memberDao.add(member);
         assertEquals(originalTeamId, memberDao.findById(member.getId()).getTeamId());
     }
-    public Member setupNewMember() { return new Member("Perry");}
-    public Member setupNewMember2() { return new Member("Tim");}
+
+    public Member setupNewMember() { return new Member("Perry", 1);}
+    public Member setupNewMember2() { return new Member("Tim", 2);}
 }
