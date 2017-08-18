@@ -16,10 +16,15 @@ public class Sql2oMemberDao implements MemberDao {
 
         @Override
         public void add(Member member) {
-            String sql = "INSERT INTO members (name, age) VALUES (:name, :age)";
+            String sql = "INSERT INTO members (name, age, teamId) VALUES (:name, :age, :teamId)";
             try (Connection con = sql2o.open()) {
                 int id = (int) con.createQuery(sql)
-                        .bind(member)
+                        .addParameter("name", member.getName())
+                        .addParameter("age", member.getAge())
+                        .addParameter("teamId", member.getTeamId())
+                        .addColumnMapping("NAME", "name")
+                        .addColumnMapping("AGE", "age")
+                        .addColumnMapping("TEAMID", "teamId")
                         .executeUpdate()
                         .getKey();
                 member.setId(id);

@@ -36,13 +36,13 @@ public class Member {
         this.id = id;
     }
 
-//    public int getTeamId() {
-//        return teamId;
-//    }
-//
-//    public void setTeamId(int teamId) {
-//        this.teamId = teamId;
-//    }
+    public int getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(int teamId) {
+        this.teamId = teamId;
+    }
 
     @Override
     public boolean equals(Object o) {
