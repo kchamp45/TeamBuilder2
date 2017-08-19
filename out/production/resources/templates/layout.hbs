@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{#block "title"}}Team Builder{{/block}}</title>
+
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+
+    <div class="jumbotron">
+        <h2>Enter your team!</h2>
+    </div>
+
+    <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="/weekend">Home</a></li>
+        <li role="presentation"><a href="/members/new">Add a New Member</a></li>
+        <li role="presentation" class="dropdown">
+
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                Team List <span class="caret"></span>
+            </a>
+
+            <ul class="dropdown-menu">
+                {{#if teams}}
+                    {{#each teams}}
+                        <li><a href="/teams/{{id}}">{{name}}</a></li>
+                    {{/each}}
+                    <li><a href="/teams/new"><b>Add a Team</b></a></li>
+
+                {{else}}
+                    <li><a href="/teams/new"><b>Add a Team</b></a></li>
+                {{/if}}
+            </ul>
+        </li>
+    </ul>
+
+<div class="container">
+    <!--begin main template-->
+    <div class="page-header">
+        <img src="/images/team.jpg" width="70%" alt="pic of team spirit">
+        <h1>Welcome to our Team Builder! <br><small>Get ready to compete!</small></h1>
+    </div>
+
+    <div class="col-md-12">
+        {{#block "content"}}
+        {{/block}}
+
+    </div>
+</div>
+
+<!--end main template-->
+
+{{#block "footer"}}
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted"><a href="/teams/delete">DELETE ALL teams</a></p>
+        </div>
+    </footer>
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    </html>
+{{/block}}

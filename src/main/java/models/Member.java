@@ -4,9 +4,9 @@ public class Member {
     private String name;
     private int age;
     private int id;
-    private int teamId;
+    private Integer teamId;
 
-    public Member(String name, int teamId) {
+    public Member(String name, Integer teamId) {
         this.name = name;
         this.age = age;
         this.teamId = teamId;
