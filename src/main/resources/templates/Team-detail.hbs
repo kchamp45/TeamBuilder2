@@ -1,22 +1,19 @@
 {{#partial "content"}}
 
  <div class="emphasized well">
+<p>Here is more detail about the team: {{team.name}} </p>
 
-   <p>Team {{id}}:</p>
-   <ul>
-       <li>Team name: {{team.name}}</li>
-       <li>Description: {{team.description}}</li>
-       <li>Created At: {{team.createdAt}}</li>
-       <li>Team members: {{team.members}}</li>
-   </ul>
+    {{#each teams}}
+        <p>Team Name:</p>
+        <p>{{description}}</p>
 
    <p>
-       <a href="/teams/{{team.id}}/addMember">Add another member</a>
-       <a href="/teams/{{team.id}}/update">Edit this entry</a>
-       <a href="/teams/{{team.id}}/delete">DELETE this entry (no undo)</a>
+       <a href="/teams/{{team.id}}/update">Edit this team</a>
+       <a href="/teams/{{team.id}}/delete">DELETE this team (no undo)</a>
    </p>
 
 </div>
 
 {{/partial}}
+
 {{> layout.hbs}}

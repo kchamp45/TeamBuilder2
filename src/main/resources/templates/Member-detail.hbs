@@ -1,0 +1,15 @@
+{{#partial "content"}}
+
+    <p>Team member:</p>
+    {{#each members}}
+    <p>{{ member.name }}</p>
+    <p>{{ member.age }}</p>
+
+
+        <a href="/teams/{{member.teamId}}/members/{{member.id}}/update">Edit this member information</a><br>
+        <a href="/teams/{{member.teamId}}/members/{{member.id}}/delete">REMOVE this member from the team (no undo)</a>
+    </p>
+
+{{/partial}}
+
+{{> layout.hbs}}

@@ -1,5 +1,5 @@
 # _Online Hack-A-Thon Team Builder_
-####  _This team builder web page was written with the help of the IntelliJ and Java. Published on 08/11/2017._
+####  _This team builder web page was written with the help of the IntelliJ and Java. Published on 08/18/2017._
 #### By _**Kimberly Lu**_
 
 ## Description
@@ -16,6 +16,8 @@ This team builder site allows user to add teams and members to each team.  It al
 | update team name | "yellow", "we are number 1", "Perry", "Tim"| "yellow", "we are number 1", "Perry", "Tim"|
 |delete the team |delete| |
 |show the details of the team|"red", "we are number 1", "Perry", "Tim"|"red", "we are number 1", "Perry", "Tim"|
+|show details of the member|"red, Perry", 10"|"red, Perry, 10"|
+|delete team member|"Perry", "Tim"|"Tim"|
 
 ## Setup/Installation Requirements
 _Download the following project from the gitHub by tapping "Download" or using 'git clone' from the terminal_
