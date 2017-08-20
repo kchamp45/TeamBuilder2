@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS members (
   id int PRIMARY KEY auto_increment,
   name VARCHAR,
   age int,
-  teamId INTEGER
+  teamId int
 
   );
 

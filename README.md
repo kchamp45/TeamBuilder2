@@ -14,10 +14,13 @@ This team builder site allows user to add teams and members to each team.  It al
 | add a team member to team| "red", "we are number 1", "Perry"| "red", "we are number 1", "Perry"|  
 | add more than one team member | "red", "we are number 1", "Perry", "Tim"| "red", "we are number 1", "Perry", "Tim" |
 | update team name | "yellow", "we are number 1", "Perry", "Tim"| "yellow", "we are number 1", "Perry", "Tim"|
-|delete the team |delete| |
+|delete an individual team |delete|" " |
+|delete all teams|delete|" "|
 |show the details of the team|"red", "we are number 1", "Perry", "Tim"|"red", "we are number 1", "Perry", "Tim"|
-|show details of the member|"red, Perry", 10"|"red, Perry, 10"|
-|delete team member|"Perry", "Tim"|"Tim"|
+|show details of the member|"red, Perry"|"red, Perry|
+update team member name|"Bob"|"Bob"|
+|delete team member|delete|" "|
+|delete all members|delete|" "|
 
 ## Setup/Installation Requirements
 _Download the following project from the gitHub by tapping "Download" or using 'git clone' from the terminal_
