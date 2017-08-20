@@ -56,9 +56,9 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         //get more info about a team
-        get("/teams/:teamId", (req, res) -> {
+        get("/teams/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            int idOfTeamToFind = Integer.parseInt(req.params("teamId"));
+            int idOfTeamToFind = Integer.parseInt(req.params("id"));
             List<Team>teams = teamDao.getAll();
             model.put("teams", teams);
             Team foundTeam = teamDao.findById(idOfTeamToFind); //use it to find team
@@ -99,15 +99,6 @@ public class App {
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
-        // delete all teams
-        get("/teams/delete", (req, res) -> {
-            Map<String, Object> model = new HashMap<>();
-            teamDao.clearAllTeams();
-            memberDao.clearAllMembers();
-            return new ModelAndView(model, "success.hbs");
-        }, new HandlebarsTemplateEngine());
-
-
         //get: show new member form
         get("/members/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
@@ -130,6 +121,14 @@ public class App {
             return new ModelAndView(model, "success2.hbs");
         }, new HandlebarsTemplateEngine());
 
+        //get information about a member
+        get("/teams/:team_id/members/:member_id", (req, res) ->{
+           Map<String, Object> model = new HashMap<>();
+           int idOfMemberToFind = Integer.parseInt(req.params("member_id"));
+           Member foundMember = memberDao.findById(idOfMemberToFind);
+           model.put("member", foundMember);
+           return new ModelAndView(model, "Member-detail.hbs");
+        }, new HandlebarsTemplateEngine());
 
         //show a form to update a member
         get("/teams/:id/members/:teamId/update", (req, res) -> {
@@ -161,10 +160,10 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         //get: delete an individual member
-        get("/teams/:teamId/members/:id/delete", (req, res) -> {
+        get("/teams/:id/members/:teamId/delete", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            int teamIdOfMemberToDelete = Integer.parseInt(req.params("teamId"));
-            int idOfMemberToDelete = Integer.parseInt(req.params("id"));//pull id - must match route segment
+            int teamIdOfMemberToDelete = Integer.parseInt(req.params("id"));
+            int idOfMemberToDelete = Integer.parseInt(req.params("teamId"));
             Member deleteMember = memberDao.findById(idOfMemberToDelete); //use it to find member
             memberDao.deleteById(idOfMemberToDelete);
             List<Member> members = memberDao.getAll();
@@ -175,6 +174,14 @@ public class App {
         //delete all members
         get("/members/delete", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
+            memberDao.clearAllMembers();
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        // delete all teams
+        get("/teams/delete", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            teamDao.clearAllTeams();
             memberDao.clearAllMembers();
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());

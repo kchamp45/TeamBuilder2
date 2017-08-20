@@ -4,11 +4,11 @@
 <p>Here are all the members in the team: {{team.name}} </p>
 <ul>
     {{#each members}}
-        <li>
-        <p>Member Name:{{name}}</p>
+        <li><a href="/teams/{{team.id}}/members/{{id}}">
+            Member Name:{{name}}</a>
            <p>
-               <a href="/teams/{{id}}/members/{{teamId}}/update">Edit this member information</a><br>
-               <a href="/teams/{{id}}/members/{{teamId}}/delete">REMOVE this member from the team (no undo)</a>
+               <a href="/teams/{{id}}/members/{{teamId}}/update">Update this member</a><br>
+               <a href="/teams/{{team.id}}/members/{{id}}/delete">Delete this member</a>
            </p>
 
         </li>
