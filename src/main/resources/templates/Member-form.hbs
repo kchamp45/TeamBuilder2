@@ -1,7 +1,7 @@
 {{#partial "content"}}
 
    {{#if editMember}}
-       <form action="/teams/{{teamIdOMemberToEdit}}/members/{{editMember.id}}/update" method="post"> <!--fix-->
+       <form action="/teams/{{teamIdOfMemberToEdit}}/members/{{idOfMemberToEdit}}/update" method="post"> <!--fix-->
        <h1>Edit this Member!</h1>
 
         <br>
@@ -9,7 +9,7 @@
            <input id="name" name="name" type="text" placeholder="Enter a new name">
 
         <br>
-
+           <button type="submit" class="btn btn-default">Update member info</button>
            <p>Don't see the right team?<a href="/teams/new">Add a new team first.</a></p>
        </form>
    {{else}}
@@ -36,7 +36,7 @@
        {{/if}}
 
    {{/if}}
-       <button type="submit" class="btn btn-default">Go!</button>
+       <button type="submit" class="btn btn-default">Add member</button>
    </form>
 
     {{/partial}}

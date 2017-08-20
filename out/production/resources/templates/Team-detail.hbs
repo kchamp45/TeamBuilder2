@@ -7,7 +7,7 @@
         <li>
         <p>Member Name:{{name}}</p>
            <p>
-               <a href="/teams/{{id}}/members/{{member.id}}/update">Edit this member information</a><br>
+               <a href="/teams/{{id}}/members/{{teamId}}/update">Edit this member information</a><br>
                <a href="/teams/{{id}}/members/{{teamId}}/delete">REMOVE this member from the team (no undo)</a>
            </p>
 
@@ -15,8 +15,8 @@
     {{/each}}
 </ul>
 </div>
-    <a href="/teams/{{team.id}}/update">Edit this team</a>
-    <a href="/teams/{{team.id}}/delete">DELETE this team (no undo)</a>
+    <p><a href="/teams/{{team.id}}/update">Edit this team</a></p>
+    <p><a href="/teams/{{team.id}}/delete">DELETE this team (no undo)</a></p>
 {{/partial}}
 
 {{> layout.hbs}}
