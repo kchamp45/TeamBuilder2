@@ -3,7 +3,7 @@
 #### By _**Kimberly Lu**_
 
 ## Description
-This team builder site allows user to add teams and members to each team.  It also allows the user to update the team's name and delete the team's entry.
+This team builder site allows user to add teams and members to each team.  It also allows the user to update or delete information about a team and/or member.
 
 ## Development Specifications
 | Behavior      | Example Input         | Example Output        |
