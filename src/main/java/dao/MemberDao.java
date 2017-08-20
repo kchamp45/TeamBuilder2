@@ -16,7 +16,7 @@ public interface MemberDao {
     Member findById(int id);
 
     //update member info
-    void update(int id, String name, Integer teamId);
+    void update(int id, String name);
 //
 //
     //delete individual member

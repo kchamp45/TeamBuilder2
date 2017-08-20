@@ -6,11 +6,11 @@
     {{#each members}}
         <li>
         <p>Member Name:{{name}}</p>
-        <p>Age: {{age}}</p>
            <p>
-               <a href="/members/update">Edit this member</a><br>
-               <a href="/members/delete">DELETE this member (no undo)</a>
+               <a href="/teams/{{id}}/members/{{teamId}}/update">Edit this member information</a><br>
+               <a href="/teams/{{id}}/members/{{teamId}}/delete">REMOVE this member from the team (no undo)</a>
            </p>
+
         </li>
     {{/each}}
 </ul>

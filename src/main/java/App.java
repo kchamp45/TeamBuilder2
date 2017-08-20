@@ -99,63 +99,51 @@ public class App {
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 //
-//        // delete all teams
-//             get("/teams/delete", (req, res) -> {
-//            Map<String, Object> model = new HashMap<>();
-//            teamDao.clearAllTeams();
-//            memberDao.clearAllMembers();
-//            List<Member> allMembers = memberDao.getAll();
-//            List<Team> allTeams = teamDao.getAll();
-//            model.put("teams", allTeams);
-//            return new ModelAndView(model, "success.hbs");
-//        }, new HandlebarsTemplateEngine());
+        // delete all teams
+             get("/teams/delete", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            teamDao.clearAllTeams();
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
 //
 //
-//        //get: show new member form
-//        get("/members/new", (req, res) -> {
-//            Map<String, Object> model = new HashMap<>();
-//            List<Team> allTeams = teamDao.getAll();
-//            model.put("teams", allTeams);
-//            return new ModelAndView(model, "Member-form.hbs");
-//        }, new HandlebarsTemplateEngine());
+        //get: show new member form
+        get("/members/new", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            List<Team> allTeams = teamDao.getAll();
+            model.put("teams", allTeams);
+            return new ModelAndView(model, "Member-form.hbs");
+        }, new HandlebarsTemplateEngine());
 //
-//        //process new member form
-//        post("/members/new", (request, response) -> { //URL to make new task on POST route
-//            Map<String, Object> model = new HashMap<>();
-//            List<Team> allTeams = teamDao.getAll();
-//            model.put("teams", allTeams);
+        //process new member form
+        post("/members/new", (request, response) -> { //URL to make new task on POST route
+            Map<String, Object> model = new HashMap<>();
+            List<Team> allTeams = teamDao.getAll();
+            model.put("teams", allTeams);
+
+            String name = request.queryParams("name");
+            int teamId = Integer.parseInt(request.queryParams("teamId"));
+            Member newMember = new Member(name, teamId);
+            memberDao.add(newMember);
+            model.put("member", newMember);
+            return new ModelAndView(model, "success2.hbs");
+        }, new HandlebarsTemplateEngine());
 //
-//            String name = request.queryParams("name");
-//            int teamId = Integer.parseInt(request.queryParams("teamId"));
-//            Member newMember = new Member(name, teamId);
-//            memberDao.add(newMember);
-//            model.put("member", newMember);
-//            return new ModelAndView(model, "success2.hbs");
-//        }, new HandlebarsTemplateEngine());
-//
-//        //show an individual member info
-//        get("/members/:id", (req, res) -> {
-//            Map<String, Object> model = new HashMap<>();
-//            int idOfMemberToFind = Integer.parseInt(req.params("id"));
-//            Member foundMember = memberDao.findById(idOfMemberToFind); //use it to find task
-//            model.put("member", foundMember); //add it to model for template to display
-//            return new ModelAndView(model, "Member-detail.hbs"); //individual task page.
-//        }, new HandlebarsTemplateEngine());
-////
-//        //show a form to update a member
-//        get("teams/:teamId/members/:id/update", (req, res) -> {
-//            Map<String, Object> model = new HashMap<>();
-//            int idOfMemberToEdit = Integer.parseInt(req.params("id"));
-//            int teamIdOfMemberToEdit = Integer.parseInt(req.params("teamId"));
-//            Member editMember = memberDao.findById(idOfMemberToEdit);
-//            model.put("editMember", editMember);
-//            model.put("teamIdOfMemberToEdit", teamIdOfMemberToEdit);
-//            List<Member>allMembers = memberDao.getAll();
-//            List<Team> allTeams = teamDao.getAll();
-//            model.put("members", allMembers);//add all members to model
-//            model.put("teams", allTeams); //add all teams to model
-//            return new ModelAndView(model, "member-form.hbs");
-//        }, new HandlebarsTemplateEngine());
+        //
+        //show a form to update a member
+        get("teams/:id/members/:teamId/update", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int teamIdOfMemberToEdit = Integer.parseInt(req.params("id"));
+            int idOfMemberToEdit = Integer.parseInt(req.params("teamId"));
+            Member editMember = memberDao.findById(idOfMemberToEdit);
+            model.put("editMember", editMember);
+            model.put("teamIdOfMemberToEdit", teamIdOfMemberToEdit);
+            List<Member>allMembers = memberDao.getAll();
+            List<Team> allTeams = teamDao.getAll();
+            model.put("members", allMembers);//add all members to model
+            model.put("teams", allTeams); //add all teams to model
+            return new ModelAndView(model, "member-form.hbs");
+        }, new HandlebarsTemplateEngine());
 //////
 //        //process a form to update a member
 //        post("teams/:teamId/members/:id/update", (req, res) -> { //URL to make new task on POST route
@@ -169,21 +157,24 @@ public class App {
 //            return new ModelAndView(model, "success.hbs");
 //        }, new HandlebarsTemplateEngine());
 ////
-//        //get: delete an individual member
-//        get("/members/:member_id/delete", (req, res) -> {
-//            Map<String, Object> model = new HashMap<>();
-//            int idOfMemberToDelete = Integer.parseInt(req.params("member_id")); //pull id - must match route segment
-//            Member deleteMember = memberDao.findById(idOfMemberToDelete); //use it to find task
-//            memberDao.deleteById(idOfMemberToDelete);
-//            return new ModelAndView(model, "success.hbs");
-//        }, new HandlebarsTemplateEngine());
-//
-//        //delete all members
-//        get("/members/delete", (req, res) -> {
-//            Map<String, Object> model = new HashMap<>();
-//            memberDao.clearAllMembers();
-//            return new ModelAndView(model, "success.hbs");
-//        }, new HandlebarsTemplateEngine());
+        //get: delete an individual member
+        get("/teams/:teamId/members/:id/delete", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int teamIdOfMemberToDelete = Integer.parseInt(req.params("teamId"));
+            int idOfMemberToDelete = Integer.parseInt(req.params("id"));//pull id - must match route segment
+            Member deleteMember = memberDao.findById(idOfMemberToDelete); //use it to find member
+            memberDao.deleteById(idOfMemberToDelete);
+            List<Member> members = memberDao.getAll();
+            model.put("members", members);
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
+////
+        //delete all members
+        get("/members/delete", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            memberDao.clearAllMembers();
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
 ////
 //
     }

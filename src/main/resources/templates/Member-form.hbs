@@ -1,16 +1,13 @@
 {{#partial "content"}}
 
    {{#if editMember}}
-       <form action="/teams/{{TeamIdOMemberToEdit}}/members/{{editMember.id}}/update" method="post"> <!--fix-->
+       <form action="/teams/{{teamIdOMemberToEdit}}/members/{{editMember.id}}/update" method="post"> <!--fix-->
        <h1>Edit this Member!</h1>
 
         <br>
            <label for="name">Edit this member's name</label>
            <input id="name" name="name" type="text" placeholder="Enter a new name">
-        <br>
 
-           <label for="age">Edit this member's age</label>
-           <input id="age" name="age" type="text" placeholder="Enter a different age">
         <br>
 
            <p>Don't see the right team?<a href="/teams/new">Add a new team first.</a></p>
@@ -20,8 +17,11 @@
 
        <form action="/members/new" method="post">
        {{#if teams}}
+           <br>
            <label for="name">Member Name</label>
            <input id="name" name="name" type="text">
+
+           <br>
            <label for="teamId">Choose this member's team:</label>
 
            <select id="teamId" name="teamId">
