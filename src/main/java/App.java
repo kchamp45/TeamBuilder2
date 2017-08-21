@@ -35,6 +35,14 @@ public class App {
             return new ModelAndView(model, "weekend.hbs");
         }, new HandlebarsTemplateEngine());
 
+        // delete all teams
+        get("/teams/delete", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            teamDao.clearAllTeams();
+            memberDao.clearAllMembers();
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
+
         //show new team form
         get("/teams/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
@@ -147,7 +155,7 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         //process a form to update a member
-        post("/teams/:id/members/:teamId/update", (req, res) -> { //URL to make new task on POST route
+        post("/teams/:id/members/:teamId/update", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             String newName = req.queryParams("name");
             int teamIdOfMemberToEdit = Integer.parseInt(req.params("id"));
@@ -178,13 +186,6 @@ public class App {
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
-        // delete all teams
-        get("/teams/delete", (req, res) -> {
-            Map<String, Object> model = new HashMap<>();
-            teamDao.clearAllTeams();
-            memberDao.clearAllMembers();
-            return new ModelAndView(model, "success.hbs");
-        }, new HandlebarsTemplateEngine());
     }
 
 }
